@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 500,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-09-04/fastfood_calories.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+
+  "repeat": { "column": [ "calories", "trans_fat", "protein" ] },
+  "spec": {
+
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "y": {
+            "field": "restaurant",
+            "sort": "-x"
+          },
+          "x": {
+            "aggregate": "mean",
+            "field": { "repeat": "column" }
+          }
+        }
+      },
+
+      {
+        "mark": "rule",
+        "encoding": {
+          "x": {
+            "aggregate": "mean",
+            "field": {"repeat": "column"},
+            "type": "quantitative"
+          },
+          "color": { "value": "red" },
+          "size": { "value": 1 }
+        }
+      }
+
+
+    ]
+  }
+
+  }
+
+
